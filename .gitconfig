@@ -1,0 +1,6 @@
+[merge]
+    tool = unityyamlmerge
+
+[mergetool "unityyamlmerge"]
+    keepBackup = false
+    path = 'C:\\Program Files\\Unity\\Editor\\Data\\Tools\\UnityYAMLMerge.exe'
