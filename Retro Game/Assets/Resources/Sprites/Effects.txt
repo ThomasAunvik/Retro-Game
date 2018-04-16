@@ -1,0 +1,6 @@
+Double jump: duhh
+
+Snowflake: Multiplayer:  Freeze the enemy player for 2 seconds and hazard obstacles on your side for 4 seconds.
+	   Singleplayer: Freeze hazard obstacles for 4 seconds.
+
+JetPack: Fly for 3 seconds.

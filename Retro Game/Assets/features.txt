@@ -1,0 +1,34 @@
+Sprites are placed and move on a 8x5 grid
+    Non-player sprites (obstacles) of different colours cannot be on the same line
+	
+Scorpion (Done)
+    Patrols
+        All moving obstacles move in unison
+Cannon (Done)
+    Projectile
+Boots Powerup (Done)
+    Double Jump
+Ice Powerup (Done)
+    Freeze other player & all obstacles
+Jet Powerup (Done)
+    Brief Flight
+Spikes
+JumpPad (Done)
+    Changes state when player is on it, launches player
+
+Platforms are placed on a 32x5 grid.
+The wall on each side of the screen is the same colour as any platform on the same line as it
+    Platforms of different colours cannot be placed on the same line
+	
+Sand Platform (Done)
+    Slowed movement
+Ice platform (Done)
+    Slippery
+Grass platform (Done)
+    Normal
+    
+Rounds are levels, either procedurally generated, randomly selected, or a rotation of premades
+    
+When one player reaches the to of the screen, they win the round
+    The screen changes to a number on each side of the screen - the number of wins for the player on that side
+    After either a pause or a button press, the next round starts

@@ -8,64 +8,110 @@ public class Player : MonoBehaviour {
     {
         P1, P2
     }
-
+    [Header("Information")]
     [SerializeField] PlayerCount playerCount = PlayerCount.P1;
-    [SerializeField] Camera playerCamera;
-    [SerializeField] float cameraYOffset;
 
     [SerializeField] float movSpeed = 0.5f;
+
     [SerializeField] float jumpForce = 1;
+
+    [Header("Movement")]
+    public LayerMask groundLayer;
+    public LayerMask iceLayer;
+    public LayerMask slowLayer;
+
+    public float groundRaycastDistance = 1;
+    public float iceSlipperyReducer = 2;
+    public float slowSpeed = 2;
+
+    bool landed = false;
+    bool touchingIce = false;
     
+    float extraXVelocity;
+
     Rigidbody2D rb2d;
     Animator animator;
+
+    float defaultMovSpeed;
+    float gravForce;
+
+    public float jumpVelocity = 70;
+
+    bool jumping = false;
+    public bool IsJumping { get { return jumping; } }
+
+    bool canDoubleJumpOnce = false;
+    float flightTime = 0;
+
+    bool stunned = false;
+    float knockback;
+
+    private void Awake()
+    {
+        defaultMovSpeed = movSpeed;
+    }
 
     void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        var height = 2 * Camera.main.orthographicSize;
-        var width = height * Camera.main.aspect;
-
-        Debug.Log("Width: " + width + ", Height: " + height);
     }
-
-    float extraXVelocity;
-	void Update ()
+    
+	void FixedUpdate ()
     {
+        // Inputs and variables
         Vector2 newPosition = rb2d.position;
         bool jump = false;
+        bool jumpButtonPressed = false;
         float moveAxis = 0;
 
-        if (playerCount == PlayerCount.P1)
+        if ((!GameManager.instance.freeze || GameManager.instance.theFreezer == this) && !stunned)
         {
-            moveAxis = Input.GetAxis("P1_Horizontal");
-            jump = Input.GetButton("P1_Jump");
+            if (playerCount == PlayerCount.P1)
+            {
+                moveAxis = Input.GetAxis("P1_Horizontal");
+                jump = Input.GetButton("P1_Jump");
+                jumpButtonPressed = Input.GetButtonDown("P1_Jump");
+            }
+            else if (playerCount == PlayerCount.P2)
+            {
+                moveAxis = Input.GetAxis("P2_Horizontal");
+                jump = Input.GetButton("P2_Jump");
+                jumpButtonPressed = Input.GetButtonDown("P2_Jump");
+            }
         }
-        else if(playerCount == PlayerCount.P2)
+        else
         {
-            moveAxis = Input.GetAxis("P2_Horizontal");
-            jump = Input.GetButton("P2_Jump");
+            moveAxis = 0;
+            jump = false;
+            jumpButtonPressed = false;
         }
-
+        // Jumping
         bool isGrounded = IsGrounded();
-        if (jump && isGrounded)
+        if (jump && ((isGrounded && rb2d.velocity.y == 0) || (canDoubleJumpOnce && jumpButtonPressed) || Time.timeSinceLevelLoad < flightTime))
         {
-            Vector2 Movement = new Vector2(rb2d.velocity.x, jumpForce);
-            rb2d.velocity = Movement;
+            //Vector2 Movement = new Vector2(rb2d.velocity.x, jumpForce);
+            rb2d.velocity = Vector2.up * jumpForce;
+            
             extraXVelocity = 0;
             landed = false;
-        }
+            touchingIce = false;
+            jumping = true;
 
+            if (!isGrounded) canDoubleJumpOnce = false;
+        }
         animator.SetBool("inAir", !isGrounded);
 
-        if (extraXVelocity != 0) extraXVelocity += moveAxis / iceSlipperyReducer;
-        rb2d.velocity = new Vector2((moveAxis * movSpeed) + extraXVelocity, rb2d.velocity.y);
+        // Walking
+        if (extraXVelocity != 0 || touchingIce) extraXVelocity += moveAxis / iceSlipperyReducer;
+        if (!touchingIce) extraXVelocity = 0;
         
-        Vector3 cameraPos = playerCamera.transform.position;
-        float velocity = 0;
-        cameraPos.y = Mathf.SmoothDamp(playerCamera.transform.position.y, rb2d.position.y + cameraYOffset, ref velocity, 0.05f);
-        playerCamera.transform.position = cameraPos;
+        rb2d.velocity = new Vector2((moveAxis * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
 
+        if (knockback > 0) knockback -= Time.deltaTime * 1000;
+        else if (knockback < 0) knockback += Time.deltaTime * 1000;
+
+
+        // Rotation of player
         if (moveAxis > 0)
         {
             transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -79,13 +125,6 @@ public class Player : MonoBehaviour {
         else animator.SetBool("isWalking", false);
     }
 
-
-    public LayerMask groundLayer;
-    public LayerMask iceLayer;
-    public float groundRaycastDistance = 1;
-    public float iceSlipperyReducer = 2;
-
-    bool landed = false;
     bool IsGrounded()
     {
         Vector2 position = transform.position;
@@ -95,20 +134,34 @@ public class Player : MonoBehaviour {
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider)
         {
-            Debug.Log(iceLayer.value == 1 << hit.collider.gameObject.layer);
             bool isTouchingIce = iceLayer.value == 1 << hit.collider.gameObject.layer;
+            touchingIce = isTouchingIce;
             if (isTouchingIce && !landed)
             {
                 extraXVelocity = rb2d.velocity.x / iceSlipperyReducer;
+                touchingIce = true;
             }
-            else if (!isTouchingIce) extraXVelocity = 0;
+            else if (!isTouchingIce) { extraXVelocity = 0; touchingIce = false; }
+            
+            bool isTouchingSlowness = slowLayer.value == 1 << hit.collider.gameObject.layer;
+            if (isTouchingSlowness)
+            {
+                movSpeed = defaultMovSpeed / slowSpeed;
+            }
+            else movSpeed = defaultMovSpeed;
 
             if (!landed && rb2d.velocity.y == 0)
             {
                 landed = true;
+                jumping = false;
             }
-
+            
             return true;
+        }
+        else
+        {
+            movSpeed = defaultMovSpeed;
+            touchingIce = false;
         }
 
         return false;
@@ -117,5 +170,50 @@ public class Player : MonoBehaviour {
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundRaycastDistance, transform.position.z));
+    }
+
+    public void Boost(float value, Vector3 direction)
+    {
+        rb2d.velocity = direction * value;
+        jumping = false;
+    }
+    
+    public void SetCanDoubleJump()
+    {
+        canDoubleJumpOnce = true;
+    }
+
+    public void SetFlight(float time)
+    {
+        flightTime = time + Time.timeSinceLevelLoad;
+    }
+
+    public bool GetJumpButton()
+    {
+        if (playerCount == PlayerCount.P1)
+        {
+            return Input.GetButton("P1_Jump");
+        }
+        else if (playerCount == PlayerCount.P2)
+        {
+            return Input.GetButton("P2_Jump");
+        }
+        else return false;
+    }
+
+    public void Stun(float time = 3)
+    {
+        stunned = true;
+        Invoke("UnStun", time);
+    }
+
+    public void UnStun()
+    {
+        stunned = false;
+    }
+
+    public void AddKnockback(float value)
+    {
+        knockback += value;
     }
 }

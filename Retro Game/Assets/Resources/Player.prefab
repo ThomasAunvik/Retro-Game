@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 212574348375274288}
   - component: {fileID: 50414889513456196}
   - component: {fileID: 95609618793213466}
-  - component: {fileID: 61309501101495428}
+  - component: {fileID: 61970933197423108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271298082912636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.1, y: -3.53, z: 0.001953125}
+  m_LocalPosition: {x: -340, y: -455, z: 0.001953125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &61309501101495428
+--- !u!61 &61970933197423108
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,18 +76,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.7222222}
+  m_Offset: {x: 0, y: 32.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1.4444444}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 40, y: 65}
+    newSize: {x: 40, y: 65}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.4444444}
+  m_Size: {x: 40, y: 65}
   m_EdgeRadius: 0
 --- !u!95 &95609618793213466
 Animator:
@@ -117,11 +117,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401c4c7647eac744caaf9b16e7f4cf14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCount: 1
-  playerCamera: {fileID: 0}
-  cameraYOffset: 2.5
-  movSpeed: 7.5
-  jumpForce: 7.5
+  playerCount: 0
+  movSpeed: 200
+  jumpForce: 350
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1792
+  iceLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  slowLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  groundRaycastDistance: 2
+  iceSlipperyReducer: 2
+  slowSpeed: 2
+  jumpVelocity: 250
 --- !u!212 &212574348375274288
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -156,12 +167,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fb4cad72989b2754992eed342eba9f81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ba12d8a4cff6264ca2725bb4a8ebf0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 40, y: 65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
