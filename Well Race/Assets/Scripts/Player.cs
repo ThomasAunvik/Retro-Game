@@ -114,16 +114,13 @@ public class Player : MonoBehaviour {
             if (!isGrounded) canDoubleJumpOnce = false;
         }
         animator.SetBool("inAir", !isGrounded);
-
-        // Walking
-        if (extraXVelocity != 0 || touchingIce) extraXVelocity += moveAxis / iceSlipperyReducer;
-        if (!touchingIce) extraXVelocity = 0;
         
-        rb2d.velocity = new Vector2((moveAxis * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
+        //if (!touchingIce) extraXVelocity = 0;
+        
+        rb2d.velocity = new Vector2(((touchingIce ? 0 : moveAxis) * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
 
-        if (knockback > 0) knockback -= Time.deltaTime * 1000;
-        else if (knockback < 0) knockback += Time.deltaTime * 1000;
-
+        float velocity = 0;
+        knockback = Mathf.SmoothDamp(knockback, 0, ref velocity, 0.1f);
 
         // Rotation of player
         if (moveAxis > 0)
@@ -262,6 +259,8 @@ public class Player : MonoBehaviour {
     {
         knockback += value;
         animator.SetTrigger("knockback");
+
+        spriteRenderer.flipX = value > 0;
     }
 
     public void Freeze(float time = 5)

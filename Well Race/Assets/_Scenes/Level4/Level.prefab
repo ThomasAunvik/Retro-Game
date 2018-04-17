@@ -2004,7 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4073207464915966}
@@ -2055,7 +2055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4457666080305650}
@@ -2074,7 +2074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4135248906211234}
@@ -2131,7 +2131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4808111509725092}
@@ -2166,7 +2166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4464834489602774}
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4150944835829720}
@@ -2236,7 +2236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4139124302067374}
