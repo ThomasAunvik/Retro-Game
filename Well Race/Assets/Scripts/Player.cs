@@ -33,6 +33,7 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
+    BoxCollider2D collider2D;
 
     float defaultMovSpeed;
     float gravForce;
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider2D = GetComponent<BoxCollider2D>();
     }
     
 	void FixedUpdate ()
@@ -140,12 +142,25 @@ public class Player : MonoBehaviour {
     bool IsGrounded()
     {
         Vector2 position = transform.position;
+        Vector2 leftPosition = transform.position;
+        leftPosition.x -= collider2D.size.x / 2;
+
+        Vector2 rightPosition = transform.position;
+        rightPosition.x += collider2D.size.x / 2;
+
         Vector2 direction = Vector2.down;
         float distance = groundRaycastDistance;
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider)
+        RaycastHit2D leftHit = Physics2D.Raycast(leftPosition, direction, distance, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightPosition, direction, distance, groundLayer);
+        RaycastHit2D middleHit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (leftHit.collider || rightHit.collider || middleHit.collider)
         {
+            RaycastHit2D hit = middleHit;
+            if (middleHit.collider) hit = middleHit;
+            else if (leftHit.collider) hit = leftHit;
+            else if (rightHit.collider) hit = rightHit;
+
             bool isTouchingIce = iceLayer.value == 1 << hit.collider.gameObject.layer;
             touchingIce = isTouchingIce;
             if (isTouchingIce && !landed)
@@ -181,7 +196,25 @@ public class Player : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - groundRaycastDistance, transform.position.z));
+        if (collider2D)
+        {
+            Vector2 position = transform.position;
+            Vector2 leftPosition = transform.position;
+            leftPosition.x -= collider2D.size.x / 2;
+
+            Vector2 rightPosition = transform.position;
+            rightPosition.x += collider2D.size.x / 2;
+
+            Vector2 downPosition = new Vector2(position.x, position.y - groundRaycastDistance);
+            Vector2 leftDownPosition = new Vector2(leftPosition.x, leftPosition.y - groundRaycastDistance);
+            Vector2 rightDownPosition = new Vector2(rightPosition.x, rightPosition.y - groundRaycastDistance);
+
+            Gizmos.DrawLine(position, downPosition);
+            Gizmos.DrawLine(leftPosition, leftDownPosition);
+            Gizmos.DrawLine(rightPosition, rightDownPosition);
+
+            Gizmos.DrawLine(leftDownPosition, rightDownPosition);
+        }
     }
 
     public void Boost(float value, Vector3 direction)
