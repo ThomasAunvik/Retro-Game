@@ -314,6 +314,15 @@ Prefab:
       propertyPath: otherJetpack
       value: 
       objectReference: {fileID: 775919368}
+    - target: {fileID: 1494964529500260, guid: db7790482e68a0942a90bc1f1a4345d5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212581373666139514, guid: db7790482e68a0942a90bc1f1a4345d5,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db7790482e68a0942a90bc1f1a4345d5, type: 2}
   m_IsPrefabParent: 0
@@ -478,7 +487,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -25423,7 +25432,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4469837207186256, guid: db7790482e68a0942a90bc1f1a4345d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4469837207186256, guid: db7790482e68a0942a90bc1f1a4345d5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -25555,7 +25564,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799725610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 347455541}

@@ -26,6 +26,7 @@ public class Scorpion : MonoBehaviour {
     {
         initPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        otherSide = GetComponentInParent<PlayArea>().transform.rotation.y == 1;
     }
 
     void Update()

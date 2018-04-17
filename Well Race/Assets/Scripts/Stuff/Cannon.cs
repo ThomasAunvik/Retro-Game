@@ -39,7 +39,10 @@ public class Cannon : MonoBehaviour {
 
         if (bypassPlayer && Time.timeSinceLevelLoad > shootTime + shootingDelay)
         {
-            ShootBullet();
+            if (!GameManager.instance.freeze)
+            {
+                ShootBullet();
+            }
             shootTime = Time.timeSinceLevelLoad;
         }
 	}

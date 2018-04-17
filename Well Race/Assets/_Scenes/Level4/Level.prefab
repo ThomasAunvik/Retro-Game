@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4392606863346884}
   - component: {fileID: 2569400267547896378}
+  - component: {fileID: 114057825279917302}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1085,7 +1086,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970047143061818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -544, y: -372.5, z: 5}
+  m_LocalPosition: {x: -512, y: -372.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4086311998046356}
@@ -1413,7 +1414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010956528286944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -352, y: -327.5, z: 5}
+  m_LocalPosition: {x: -320, y: -327.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4003954789774486}
@@ -1980,6 +1981,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 576, y: 35}
   m_EdgeRadius: 0
+--- !u!114 &114057825279917302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1262710540785702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9196faddf7cf4458d46f0c45652d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114211986390183132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1993,7 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4073207464915966}
   playerMask:
@@ -2044,7 +2056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4457666080305650}
   playerMask:
@@ -2063,7 +2075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4135248906211234}
   playerMask:
@@ -2120,7 +2132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4808111509725092}
   playerMask:
@@ -2155,7 +2167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4464834489602774}
   playerMask:
@@ -2174,7 +2186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4150944835829720}
   playerMask:
@@ -2225,7 +2237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingRange: 504
   shootingDelay: 1
-  bypassPlayer: 0
+  bypassPlayer: 1
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
   bulletSpawn: {fileID: 4139124302067374}
   playerMask:
@@ -3434,7 +3446,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -3473,7 +3485,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -3512,7 +3524,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16

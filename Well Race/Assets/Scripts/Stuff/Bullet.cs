@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour {
 
     public float bulletSpeed = 1;
     public float knockback = 10;
+    public float stunTime = 1;
     Vector3 direction;
 
     public Cannon cannon;
@@ -27,8 +28,8 @@ public class Bullet : MonoBehaviour {
             Player player = collision.gameObject.GetComponent<Player>();
             if (player)
             {
-                player.AddKnockback(transform.right.x * knockback * bulletSpeed);
-                Debug.Log("Adding Force: " + (direction.x * knockback));
+                player.AddKnockback(transform.right.x * knockback);
+                player.Stun(stunTime);
             }
             Destroy(gameObject);
         }
