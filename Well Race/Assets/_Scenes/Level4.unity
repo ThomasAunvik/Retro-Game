@@ -521,6 +521,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 201262902}
   m_Script: {fileID: 11500000, guid: caf64e4102df79140823142bdc5bc8f3, type: 3}
+--- !u!1 &201262904 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1262710540785702, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+    type: 2}
+  m_PrefabInternal: {fileID: 201262902}
+--- !u!114 &201262905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201262904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c9196faddf7cf4458d46f0c45652d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347455540
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +600,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
@@ -25546,7 +25562,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 799725610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 347455541}
@@ -25663,10 +25679,6 @@ Prefab:
     - target: {fileID: 1271298082912636, guid: 80c307211c35d774295e2fc67e38c280, type: 2}
       propertyPath: m_Name
       value: Player1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271298082912636, guid: 80c307211c35d774295e2fc67e38c280, type: 2}
-      propertyPath: m_Layer
-      value: 31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 80c307211c35d774295e2fc67e38c280, type: 2}
@@ -26145,6 +26157,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114635785488030506, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
         type: 2}
+      propertyPath: otherTrigger
+      value: 
+      objectReference: {fileID: 201262903}
+    - target: {fileID: 114635785488030506, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
       propertyPath: scoreCanvas
       value: 
       objectReference: {fileID: 701348836}
@@ -26178,54 +26195,6 @@ Prefab:
       propertyPath: P2WinText
       value: 
       objectReference: {fileID: 1326742159}
-    - target: {fileID: 114635785488030506, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: otherTrigger
-      value: 
-      objectReference: {fileID: 201262903}
-    - target: {fileID: 4331759546401472, guid: ef8260bc5eef5624ba67d6b4706b4f3a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -512
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747710919336074, guid: ef8260bc5eef5624ba67d6b4706b4f3a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -320
-      objectReference: {fileID: 0}
-    - target: {fileID: 114840500215968364, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114211986390183132, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114807648088421804, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114728347858769274, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114411415160930416, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114783499992713834, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114280882667081784, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
-        type: 2}
-      propertyPath: bypassPlayer
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8260bc5eef5624ba67d6b4706b4f3a, type: 2}
   m_IsPrefabParent: 0

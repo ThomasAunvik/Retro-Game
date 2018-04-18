@@ -8,6 +8,8 @@ public class Cannon : MonoBehaviour {
     public float shootingDelay = 2;
     public bool bypassPlayer = false;
 
+    public float knockback = 350;
+
     float shootTime = 0;
 
     public GameObject bullet;
@@ -39,7 +41,10 @@ public class Cannon : MonoBehaviour {
 
         if (bypassPlayer && Time.timeSinceLevelLoad > shootTime + shootingDelay)
         {
-            ShootBullet();
+            if (!GameManager.instance.freeze)
+            {
+                ShootBullet();
+            }
             shootTime = Time.timeSinceLevelLoad;
         }
 	}
@@ -47,7 +52,10 @@ public class Cannon : MonoBehaviour {
     public void ShootBullet()
     {
         GameObject bullet = Instantiate(this.bullet, bulletSpawn.position, bulletSpawn.rotation, bulletSpawn);
-        bullet.GetComponent<Bullet>().cannon = this;
+        Bullet bull = bullet.GetComponent<Bullet>();
+        bull.cannon = this;
+        bull.knockback = knockback;
+        
     }
 
     private void OnDrawGizmos()

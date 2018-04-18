@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 256
-  knockback: 1
+  knockback: 500
+  stunTime: 1
   cannon: {fileID: 0}
 --- !u!212 &212890463666111616
 SpriteRenderer:

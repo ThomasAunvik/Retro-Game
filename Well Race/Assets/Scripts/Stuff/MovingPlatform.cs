@@ -19,6 +19,7 @@ public class MovingPlatform : MonoBehaviour {
     private void Awake()
     {
         initPosition = transform.position;
+        otherSide = GetComponentInParent<PlayArea>().transform.rotation.y == 1;
     }
 
 	void Update () {
