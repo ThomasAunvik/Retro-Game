@@ -21,16 +21,19 @@ public class Scorpion : MonoBehaviour {
     bool reverse;
 
     SpriteRenderer spriteRenderer;
+    Animator animator;
     
     private void Awake()
     {
         initPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         otherSide = GetComponentInParent<PlayArea>().transform.rotation.y == 1;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator.enabled = !GameManager.instance.freeze;
         if (GameManager.instance.freeze) return;
 
         if (transform.position.y != initPosition.y) initPosition.y = transform.position.y;

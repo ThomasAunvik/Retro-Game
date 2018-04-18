@@ -45,11 +45,7 @@ public class EndingTrigger : MonoBehaviour {
             ScoreManager.instance.AddScore(player);
         }
 
-        Player[] players = FindObjectsOfType<Player>();
-        foreach(Player playerInPlayers in players)
-        {
-            playerInPlayers.Freeze(15);
-        }
+        if (GameManager.instance) GameManager.instance.FreezeAll(100);
 
         yield return new WaitForSecondsRealtime(1);
 
@@ -90,7 +86,13 @@ public class EndingTrigger : MonoBehaviour {
 
         if (ScoreManager.instance && ScoreManager.instance.GetScore(player) < 10)
         {
-            SceneManager.LoadScene(Random.Range(2, SceneManager.sceneCountInBuildSettings));
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            int newScene = Random.Range(2, SceneManager.sceneCountInBuildSettings);
+            while(currentScene == newScene)
+            {
+                newScene = Random.Range(2, SceneManager.sceneCountInBuildSettings);
+            }
+            SceneManager.LoadScene(newScene);
         }
         else SceneManager.LoadScene(1);
     }

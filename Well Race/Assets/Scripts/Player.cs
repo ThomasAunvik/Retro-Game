@@ -14,8 +14,6 @@ public class Player : MonoBehaviour {
 
     [SerializeField] float movSpeed = 0.5f;
 
-    [SerializeField] float jumpForce = 1;
-
     [Header("Movement")]
     public LayerMask groundLayer;
     public LayerMask iceLayer;
@@ -24,6 +22,11 @@ public class Player : MonoBehaviour {
     public float groundRaycastDistance = 1;
     public float iceSlipperyReducer = 2;
     public float slowSpeed = 2;
+    
+    [Header("Jumping")]
+    [SerializeField] float jumpForce = 1;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2;
 
     bool landed = false;
     bool touchingIce = false;
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb2d;
     Animator animator;
     SpriteRenderer spriteRenderer;
-    BoxCollider2D collider2D;
+    BoxCollider2D bCollider2D;
 
     float defaultMovSpeed;
     float gravForce;
@@ -47,6 +50,8 @@ public class Player : MonoBehaviour {
     float flightTime = 0;
 
     bool stunned = false;
+    public bool IsStunned() { return stunned; }
+
     float knockback;
 
     bool freeze = false;
@@ -60,10 +65,19 @@ public class Player : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider2D = GetComponent<BoxCollider2D>();
+        bCollider2D = GetComponent<BoxCollider2D>();
     }
-    
-	void FixedUpdate ()
+
+    private void Update()
+    {
+        if (GameManager.instance)
+        {
+            animator.enabled = !GameManager.instance.freeze;
+            rb2d.simulated = !GameManager.instance.freeze;
+        }
+    }
+
+    void FixedUpdate ()
     {
         if (freeze)
         {
@@ -106,18 +120,30 @@ public class Player : MonoBehaviour {
             //Vector2 Movement = new Vector2(rb2d.velocity.x, jumpForce);
             rb2d.velocity = Vector2.up * jumpForce;
             
-            extraXVelocity = 0;
             landed = false;
             touchingIce = false;
             jumping = true;
 
             if (!isGrounded) canDoubleJumpOnce = false;
         }
+        
+        if (!isGrounded)
+        {
+            if (rb2d.velocity.y < 0)
+            {
+                rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb2d.velocity.y > 0)
+            {
+                rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
+        }
+
         animator.SetBool("inAir", !isGrounded);
-        
-        //if (!touchingIce) extraXVelocity = 0;
-        
-        rb2d.velocity = new Vector2(((touchingIce ? 0 : moveAxis) * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
+
+        if (extraXVelocity != 0 || touchingIce) extraXVelocity += moveAxis / iceSlipperyReducer;
+
+        if(!GameManager.instance.freeze) rb2d.velocity = new Vector2(((touchingIce ? 0 : moveAxis) * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
 
         float velocity = 0;
         knockback = Mathf.SmoothDamp(knockback, 0, ref velocity, 0.1f);
@@ -134,16 +160,17 @@ public class Player : MonoBehaviour {
             animator.SetBool("isWalking", true);
         }
         else animator.SetBool("isWalking", false);
+        
     }
 
     bool IsGrounded()
     {
         Vector2 position = transform.position;
         Vector2 leftPosition = transform.position;
-        leftPosition.x -= collider2D.size.x / 2;
+        leftPosition.x -= bCollider2D.size.x / 2;
 
         Vector2 rightPosition = transform.position;
-        rightPosition.x += collider2D.size.x / 2;
+        rightPosition.x += bCollider2D.size.x / 2;
 
         Vector2 direction = Vector2.down;
         float distance = groundRaycastDistance;
@@ -165,7 +192,7 @@ public class Player : MonoBehaviour {
                 extraXVelocity = rb2d.velocity.x / iceSlipperyReducer;
                 touchingIce = true;
             }
-            else if (!isTouchingIce) { extraXVelocity = 0; touchingIce = false; }
+            else if (!isTouchingIce) { extraXVelocity = 0; touchingIce = false; movSpeed = defaultMovSpeed; }
             
             bool isTouchingSlowness = slowLayer.value == 1 << hit.collider.gameObject.layer;
             if (isTouchingSlowness)
@@ -193,14 +220,14 @@ public class Player : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        if (collider2D)
+        if (bCollider2D)
         {
             Vector2 position = transform.position;
             Vector2 leftPosition = transform.position;
-            leftPosition.x -= collider2D.size.x / 2;
+            leftPosition.x -= bCollider2D.size.x / 2;
 
             Vector2 rightPosition = transform.position;
-            rightPosition.x += collider2D.size.x / 2;
+            rightPosition.x += bCollider2D.size.x / 2;
 
             Vector2 downPosition = new Vector2(position.x, position.y - groundRaycastDistance);
             Vector2 leftDownPosition = new Vector2(leftPosition.x, leftPosition.y - groundRaycastDistance);
@@ -243,11 +270,14 @@ public class Player : MonoBehaviour {
         else return false;
     }
 
-    public void Stun(float time = 3)
+    public void Stun(float time = 3, bool stopVelocity = false)
     {
         stunned = true;
+        CancelInvoke("UnStun");
         Invoke("UnStun", time);
         animator.SetTrigger("knockback");
+
+        if (stopVelocity) { extraXVelocity = 0; knockback = 0; }
     }
 
     public void UnStun()
@@ -257,16 +287,19 @@ public class Player : MonoBehaviour {
 
     public void AddKnockback(float value)
     {
-        knockback += value;
+        if (!GameManager.instance.freeze) knockback += value;
         animator.SetTrigger("knockback");
 
         spriteRenderer.flipX = value > 0;
     }
 
-    public void Freeze(float time = 5)
+    public void Freeze(float time = 5, bool stopVelocity = false)
     {
         freeze = true;
+        CancelInvoke("UnFreeze");
         Invoke("UnFreeze", time);
+
+        if (stopVelocity) { extraXVelocity = 0; }
     }
 
     public void UnFreeze()

@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour {
         Invoke("UnFreeze", time);
     }
 
+    public void FreezeAll(float time)
+    {
+        this.theFreezer = null;
+        freeze = true;
+
+        Invoke("UnFreeze", time);
+    }
+
     void UnFreeze()
     {
         freeze = false;

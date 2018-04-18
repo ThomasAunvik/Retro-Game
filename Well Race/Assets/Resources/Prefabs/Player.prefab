@@ -24,8 +24,7 @@ GameObject:
   - component: {fileID: 50414889513456196}
   - component: {fileID: 95609618793213466}
   - component: {fileID: 61970933197423108}
-  - component: {fileID: 114118788958364446}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1271298082912636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -340, y: -447.2, z: 0.001953125}
+  m_LocalPosition: {x: -324, y: -455, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,19 +106,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114118788958364446
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1271298082912636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204320fe10add4648b9b910e935f9348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMultiplier: 6
-  lowJumpMultiplier: 3
 --- !u!114 &114384882747519526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,7 +119,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCount: 0
   movSpeed: 200
-  jumpForce: 200
   groundLayer:
     serializedVersion: 2
     m_Bits: 1792
@@ -144,8 +129,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   groundRaycastDistance: 2
-  iceSlipperyReducer: 2
+  iceSlipperyReducer: 1
   slowSpeed: 2
+  jumpForce: 300
+  fallMultiplier: 4
+  lowJumpMultiplier: 2
   jumpVelocity: 250
 --- !u!212 &212574348375274288
 SpriteRenderer:

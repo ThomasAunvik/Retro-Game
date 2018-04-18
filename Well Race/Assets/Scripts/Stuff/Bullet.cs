@@ -17,7 +17,10 @@ public class Bullet : MonoBehaviour {
     }
 
     void Update () {
-        transform.Translate(direction * bulletSpeed * Time.deltaTime);
+        if (!GameManager.instance.freeze)
+        {
+            transform.Translate(direction * bulletSpeed * Time.deltaTime);
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
