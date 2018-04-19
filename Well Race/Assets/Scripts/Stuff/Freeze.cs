@@ -5,6 +5,9 @@ using UnityEngine;
 public class Freeze : MonoBehaviour {
 
     public Freeze otherFreezer;
+    public AudioClip onCollectedAudio;
+
+    AudioSource audioSource;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,6 +15,9 @@ public class Freeze : MonoBehaviour {
         if (player)
         {
             GameManager.instance.Freeze(player);
+            
+            SoundManager.PlayAudio(onCollectedAudio);
+
             Destroy(otherFreezer.gameObject);
             Destroy(gameObject);
         }

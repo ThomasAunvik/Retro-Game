@@ -1416,6 +1416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114250954748104642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1428,6 +1429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114276030384391180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1440,6 +1442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114279168007989816
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1452,6 +1455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherFreezer: {fileID: 0}
+  onCollectedAudio: {fileID: 8300000, guid: ed504bd8ced86b348b4557f10cce8f21, type: 3}
 --- !u!114 &114419507360316426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1464,6 +1468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114434922196103716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1476,6 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114480612548565286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1488,6 +1494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114564150470244602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,6 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114635584159636622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1512,6 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114637643999584720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1542,6 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114792534036914854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1603,6 +1613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherBoot: {fileID: 0}
+  onCollectedAudio: {fileID: 8300000, guid: f877dba0a2c6eba48abad0f2dbb86784, type: 3}
 --- !u!114 &114944084279017780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1615,6 +1626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!114 &114966898741040754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1627,6 +1639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 200
+  stunTime: 2
 --- !u!212 &212124056191239680
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -73,6 +73,7 @@ public class Scorpion : MonoBehaviour {
             {
                 stunTimer = Time.timeSinceLevelLoad + stunDelay;
                 player.Stun(stunTime);
+                player.PlayHitSound();
             }
         }
     }

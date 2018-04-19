@@ -1738,6 +1738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114014159143086328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1770,6 +1771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114128094637684594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1782,6 +1784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114171484321579280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1806,6 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114222108856446332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1818,6 +1822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114253210482873284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1830,6 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114325757493247680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1864,6 +1870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114417611788712144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1896,6 +1903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherBoot: {fileID: 0}
+  onCollectedAudio: {fileID: 8300000, guid: f877dba0a2c6eba48abad0f2dbb86784, type: 3}
 --- !u!114 &114476385425089068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1920,6 +1928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114499529983349680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1943,6 +1952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114635382493002596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1967,6 +1977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114765197509868844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1979,7 +1990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherJetpack: {fileID: 0}
-  jetpackTime: 2
+  jetpackTime: 3
+  onCollectedAudio: {fileID: 8300000, guid: ed504bd8ced86b348b4557f10cce8f21, type: 3}
 --- !u!114 &114770323994558822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1992,6 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114897383250320598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2004,6 +2017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherFreezer: {fileID: 0}
+  onCollectedAudio: {fileID: 8300000, guid: 479ab8485e04ac540b13e3c65cd1ae1a, type: 3}
 --- !u!114 &114923858035030066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2016,6 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!114 &114966462401200548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2028,6 +2043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 20
+  stunTime: 2
 --- !u!212 &212040927591361102
 SpriteRenderer:
   m_ObjectHideFlags: 1

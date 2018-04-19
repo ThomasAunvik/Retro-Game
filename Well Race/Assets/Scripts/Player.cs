@@ -20,13 +20,20 @@ public class Player : MonoBehaviour {
     public LayerMask slowLayer;
 
     public float groundRaycastDistance = 1;
+
     public float iceSlipperyReducer = 2;
+    public float walkingInIceReducer = 3;
     public float slowSpeed = 2;
+    public float flightSpeedReducer = 2;
     
     [Header("Jumping")]
     [SerializeField] float jumpForce = 1;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2;
+
+    [Header("Soundss")]
+    public AudioClip jumpSound;
+    public AudioClip hitSound;
 
     bool landed = false;
     bool touchingIce = false;
@@ -37,6 +44,7 @@ public class Player : MonoBehaviour {
     Animator animator;
     SpriteRenderer spriteRenderer;
     BoxCollider2D bCollider2D;
+    AudioSource audioSource;
 
     float defaultMovSpeed;
     float gravForce;
@@ -66,14 +74,24 @@ public class Player : MonoBehaviour {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bCollider2D = GetComponent<BoxCollider2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         if (GameManager.instance)
         {
-            animator.enabled = !GameManager.instance.freeze;
-            rb2d.simulated = !GameManager.instance.freeze;
+            if (GameManager.instance.freeze && GameManager.instance.theFreezer != this)
+            {
+                animator.enabled = false;
+                rb2d.simulated = false;
+                rb2d.velocity = Vector2.zero;
+            }
+            else
+            {
+                animator.enabled = true;
+                rb2d.simulated = true;
+            }
         }
     }
 
@@ -115,19 +133,22 @@ public class Player : MonoBehaviour {
         }
         // Jumping
         bool isGrounded = IsGrounded();
-        if (jump && ((isGrounded && rb2d.velocity.y == 0) || (canDoubleJumpOnce && jumpButtonPressed) || Time.timeSinceLevelLoad < flightTime))
+        if (jump && ((isGrounded && rb2d.velocity.y == 0) || (jumping && canDoubleJumpOnce && jumpButtonPressed) || Time.timeSinceLevelLoad < flightTime))
         {
+            if (jumpButtonPressed || canDoubleJumpOnce || !jumping) PlayJumpSound();
+
             //Vector2 Movement = new Vector2(rb2d.velocity.x, jumpForce);
-            rb2d.velocity = Vector2.up * jumpForce;
-            
+            float newJumpForce = jumpForce / (Time.timeSinceLevelLoad < flightTime ? flightSpeedReducer : 1); 
+            rb2d.velocity = Vector2.up * newJumpForce;
+
             landed = false;
-            touchingIce = false;
             jumping = true;
 
             if (!isGrounded) canDoubleJumpOnce = false;
+            
         }
         
-        if (!isGrounded)
+        if (!isGrounded && !(GameManager.instance.freeze && GameManager.instance.theFreezer != this))
         {
             if (rb2d.velocity.y < 0)
             {
@@ -141,9 +162,9 @@ public class Player : MonoBehaviour {
 
         animator.SetBool("inAir", !isGrounded);
 
-        if (extraXVelocity != 0 || touchingIce) extraXVelocity += moveAxis / iceSlipperyReducer;
+        if (extraXVelocity != 0 || touchingIce) extraXVelocity += moveAxis / walkingInIceReducer;
 
-        if(!GameManager.instance.freeze) rb2d.velocity = new Vector2(((touchingIce ? 0 : moveAxis) * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
+        if(!(GameManager.instance.freeze && GameManager.instance.theFreezer != this)) rb2d.velocity = new Vector2(((touchingIce ? moveAxis / walkingInIceReducer : moveAxis) * movSpeed) + knockback + extraXVelocity, rb2d.velocity.y);
 
         float velocity = 0;
         knockback = Mathf.SmoothDamp(knockback, 0, ref velocity, 0.1f);
@@ -212,7 +233,6 @@ public class Player : MonoBehaviour {
         else
         {
             movSpeed = defaultMovSpeed;
-            touchingIce = false;
         }
 
         return false;
@@ -277,12 +297,17 @@ public class Player : MonoBehaviour {
         Invoke("UnStun", time);
         animator.SetTrigger("knockback");
 
+        rb2d.velocity = Vector2.zero;
+
+        animator.SetBool("isStunned", true);
+
         if (stopVelocity) { extraXVelocity = 0; knockback = 0; }
     }
 
     public void UnStun()
     {
         stunned = false;
+        animator.SetBool("isStunned", false);
     }
 
     public void AddKnockback(float value)
@@ -305,5 +330,17 @@ public class Player : MonoBehaviour {
     public void UnFreeze()
     {
         freeze = false;
+    }
+
+    public void PlayJumpSound()
+    {
+        audioSource.clip = jumpSound;
+        audioSource.Play();
+    }
+
+    public void PlayHitSound()
+    {
+        audioSource.clip = hitSound;
+        audioSource.Play();
     }
 }

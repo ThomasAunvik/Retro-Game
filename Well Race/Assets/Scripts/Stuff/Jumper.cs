@@ -20,6 +20,7 @@ public class Jumper : MonoBehaviour {
         if (player && canFire)
         {
             player.Boost(jumpForce, transform.up);
+            player.PlayJumpSound();
             animator.SetTrigger("Fire");
             canFire = false;
         }

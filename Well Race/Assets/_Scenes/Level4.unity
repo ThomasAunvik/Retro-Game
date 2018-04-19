@@ -26195,6 +26195,51 @@ Prefab:
       propertyPath: P2WinText
       value: 
       objectReference: {fileID: 1326742159}
+    - target: {fileID: 61255351381115614, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 61255351381115614, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 114783499992713834, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114411415160930416, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114211986390183132, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114280882667081784, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114840500215968364, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114807648088421804, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
+    - target: {fileID: 114728347858769274, guid: ef8260bc5eef5624ba67d6b4706b4f3a,
+        type: 2}
+      propertyPath: onFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: eae7d273dcab04447bc46654bdbf4818, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef8260bc5eef5624ba67d6b4706b4f3a, type: 2}
   m_IsPrefabParent: 0

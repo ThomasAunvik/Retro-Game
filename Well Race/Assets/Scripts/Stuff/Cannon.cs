@@ -56,6 +56,7 @@ public class Cannon : MonoBehaviour {
         bull.cannon = this;
         bull.knockback = knockback;
         
+        bull.range = shootingRange;
     }
 
     private void OnDrawGizmos()
