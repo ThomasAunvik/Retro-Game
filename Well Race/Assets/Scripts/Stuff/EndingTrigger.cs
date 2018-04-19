@@ -39,7 +39,7 @@ public class EndingTrigger : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
-        if (player && !otherTrigger.wasFirst)
+        if (player && !otherTrigger.wasFirst && !wasFirst)
         {
             wasFirst = true;
             StartCoroutine(FinishGame(player.GetPlayerCount));
