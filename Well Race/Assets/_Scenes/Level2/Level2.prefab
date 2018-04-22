@@ -1751,7 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 408
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   knockback: 350
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
@@ -1883,7 +1883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 504
-  shootingDelay: 1
+  shootingDelay: 2
   bypassPlayer: 1
   knockback: 350
   bullet: {fileID: 1459779814264856, guid: ad32e623268820f4eb8767f0ec53ff92, type: 2}
